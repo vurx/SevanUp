@@ -26,26 +26,44 @@ public class WechatyConfiguration {
             log.info(QrcodeUtils.getQr(qrcode));
         });
         bot.onMessage(t -> {
-            Contact from = t.from();
+            // 排除自己发的消息
+            if (t.self()) {
+                return;
+            }
+            // 获取群聊（如果是个人发送，room为null）
             Room room = t.room();
-            if (null != room && t.type().toString().equals("Text")) {
+            // 拿到发送者
+            Contact from = t.from();
+            System.out.println(from.getId());
+            String type = t.type().toString();
+
+            // 群聊的文本消息
+            if (null != room) {
                 try {
-                    log.info("收到来自群聊【{}】的[{}]的消息:{}", room.getTopic().get(), t.from().name(), t.content());
+                    //群聊的名字
+                    String roomName = room.getTopic().get();
+                    if (("Text").equals(type)) {
+                        log.info("收到来自群聊【{}】的[{}]的消息:{}", roomName, from.name(), t.content());
+                    }
                 } catch (Exception e) {
                     log.error("", e);
                 }
             }
-            if (null == room && !t.from().name().equals("VVVV")) {
-                log.info("收到来自[{}]的消息:{}", t.from().name(), t.content());
-                if (t.text().equals("牛逼")) {
-                    for (int i = 0; i < 10; i++) {
-                        from.say("这是机器人回复x" + i);
+            // 非群聊的文本消息
+            if (null == room) {
+                if (("Text").equals(type)) {
+                    log.info("收到来自[{}]的消息:{}", t.from().name(), t.content());
+                    if (t.text().equals("牛逼")) {
+                        for (int i = 0; i < 10; i++) {
+                            from.say("这是机器人回复x" + i);
+                        }
                     }
                 }
             }
-
         });
         bot.start(true);
+        Contact contact = new Contact(bot, "@8ad86be29b898bc811ecf302310b3bbf");
+        bot.say("test").say("test", contact);
     }
 
 
