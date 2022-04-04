@@ -13,7 +13,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(){
-        testService.dosome();
+//        testService.dosome();
         return "傻逼";
     }
 }
