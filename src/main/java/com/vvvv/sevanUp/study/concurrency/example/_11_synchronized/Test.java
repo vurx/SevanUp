@@ -1,7 +1,7 @@
 package com.vvvv.sevanUp.study.concurrency.example._11_synchronized;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openjdk.jol.info.ClassLayout;
+//import org.openjdk.jol.info.ClassLayout;
 
 import java.util.HashMap;
 
@@ -31,7 +31,7 @@ public class Test {
 
 
         VVV l = new VVV();
-        System.out.println(ClassLayout.parseInstance(l).toPrintable());
+//        System.out.println(ClassLayout.parseInstance(l).toPrintable());
 
 
 //        log.info(ClassLayout.parseInstance(l).toPrintable());

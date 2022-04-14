@@ -1,7 +1,7 @@
 package com.vvvv.sevanUp.study.concurrency.example._1_count;
 
 
-import com.vvvv.studying.concurrency.annoations.ThreadNotSafe;
+import com.vvvv.sevanUp.study.concurrency.annoations.ThreadNotSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

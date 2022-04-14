@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.easy;
+package com.vvvv.sevanUp.study.algorithm.easy;
 
 import java.util.Stack;
 

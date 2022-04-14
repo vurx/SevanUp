@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.easy.sort;
+package com.vvvv.sevanUp.study.algorithm.easy.sort;
 
 public class QuickSort {
 

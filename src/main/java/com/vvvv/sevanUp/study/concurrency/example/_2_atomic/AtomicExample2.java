@@ -1,6 +1,6 @@
 package com.vvvv.sevanUp.study.concurrency.example._2_atomic;
 
-import com.vvvv.studying.concurrency.annoations.ThreadSafe;
+import com.vvvv.sevanUp.study.concurrency.annoations.ThreadSafe;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.slf4j.Logger;

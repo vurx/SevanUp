@@ -1,6 +1,6 @@
-package com.vvvv.sevanUp.study.easy;
+package com.vvvv.sevanUp.study.algorithm.easy;
 
-import com.vvvv.studying.algorithm.easy.assist.ListNode;
+import com.vvvv.sevanUp.study.algorithm.easy.assist.ListNode;
 
 public class N203_RemoveLinkedListElement {
     static ListNode removeElements(ListNode head, int val) {

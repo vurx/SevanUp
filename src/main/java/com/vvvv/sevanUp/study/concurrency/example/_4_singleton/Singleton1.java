@@ -1,6 +1,6 @@
 package com.vvvv.sevanUp.study.concurrency.example._4_singleton;
 
-import com.vvvv.studying.concurrency.annoations.ThreadNotSafe;
+import com.vvvv.sevanUp.study.concurrency.annoations.ThreadNotSafe;
 
 /**
  * @ClassName Singleton1

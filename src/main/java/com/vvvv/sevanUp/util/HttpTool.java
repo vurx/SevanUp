@@ -1,8 +1,8 @@
 package com.vvvv.sevanUp.util;
 
-import com.vvvv.basicConfiguration.enums.CharsetType;
-import com.vvvv.basicConfiguration.enums.ReturnInfoEnum;
-import com.vvvv.basicConfiguration.exception.VurxException;
+import com.vvvv.sevanUp.basic.constant.enums.CharsetType;
+import com.vvvv.sevanUp.basic.constant.enums.ReturnInfoEnum;
+import com.vvvv.sevanUp.basic.exception.VurxException;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 

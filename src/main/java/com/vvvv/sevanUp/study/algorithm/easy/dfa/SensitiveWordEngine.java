@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.easy.dfa;
+package com.vvvv.sevanUp.study.algorithm.easy.dfa;
 
 import lombok.extern.slf4j.Slf4j;
 
