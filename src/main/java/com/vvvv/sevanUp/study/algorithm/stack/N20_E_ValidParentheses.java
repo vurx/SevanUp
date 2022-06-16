@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy;
+package com.vvvv.sevanUp.study.algorithm.stack;
 
 import java.util.Stack;
 
@@ -35,7 +35,7 @@ import java.util.Stack;
  * 1 <= s.length <= 104
  * s 仅由括号 '()[]{}' 组成
  */
-public class N20_ValidParentheses {
+public class N20_E_ValidParentheses {
 
     public static boolean valid(String s) {
         while (s.contains("()") || s.contains("{}") || s.contains("[]")) {

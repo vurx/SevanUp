@@ -22,9 +22,9 @@ public class ThreadDataListener extends AnalysisEventListener<SubsinstSynTemp> {
     /**
      * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
      */
-    private static final int BATCH_COUNT = 3000;
+    private static final int BATCH_COUNT = 5000;
     //每个线程的处理量
-    private static final int MaxHandingNum = 20;
+    private static final int MaxHandingNum = 5000;
     List<SubsinstSynTemp> list = new ArrayList<SubsinstSynTemp>();
     /**
      * 假设这个是一个DAO，当然有业务逻辑这个也可以是一个service。当然如果不用存储这个对象没用。
@@ -93,6 +93,7 @@ public class ThreadDataListener extends AnalysisEventListener<SubsinstSynTemp> {
         int count = list.size();
         // 根据 获取的这次要处理数量/单个线程处理量 来计算需要执行的线程数
         int batch = count % MaxHandingNum == 0 ? count / MaxHandingNum : count / MaxHandingNum + 1;
+        log.info("总线程数为：{},每个线程的处理量为：{}", batch, MaxHandingNum);
         for (int i = 0; i < batch; i++) {
             int endSize = Math.min((i + 1) * MaxHandingNum, list.size());
             subsinstSynTemps = list.subList(i * MaxHandingNum, endSize);

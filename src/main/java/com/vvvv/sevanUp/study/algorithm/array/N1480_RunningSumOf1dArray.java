@@ -1,9 +1,9 @@
-package com.vvvv.sevanUp.study.algorithm.easy;
+package com.vvvv.sevanUp.study.algorithm.array;
 
 /**
- * 给你一个数组 nums 。数组「动态和」的计算公式为：runningSum[i] = sum(nums[0]…nums[i]) 。
+ * Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
  *
- * 请返回 nums 的动态和。
+ * Return the running sum of nums.
  *
  * 示例 1：
  *
@@ -11,7 +11,7 @@ package com.vvvv.sevanUp.study.algorithm.easy;
  * 输出：[1,3,6,10]
  * 解释：动态和计算过程为 [1, 1+2, 1+2+3, 1+2+3+4] 。
  */
-public class Day2 {
+public class N1480_RunningSumOf1dArray {
     static void justDo(int[] num) {
         int[] result = new int[num.length];
         for (int i = 0; i < num.length; i++) {

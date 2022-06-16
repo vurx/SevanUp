@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy;
+package com.vvvv.sevanUp.study.algorithm;
 
 import java.util.Arrays;
 import java.util.HashMap;

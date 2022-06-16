@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy;
+package com.vvvv.sevanUp.study.algorithm;
 
 /**
  * Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
@@ -22,6 +22,7 @@ package com.vvvv.sevanUp.study.algorithm.easy;
  * -104 <= nums[i] <= 104
  */
 public class N53_MaximumSubarray {
+
 
     static int go(int[] nums) {
         int pre = 0, maxAns = nums[0];

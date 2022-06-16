@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy.dfa;
+package com.vvvv.sevanUp.study.algorithm.dfa;
 
 /**
  * @ClassName SmsBlackDict

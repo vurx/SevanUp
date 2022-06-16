@@ -1,4 +1,6 @@
-package com.vvvv.sevanUp.study.algorithm.easy.array;
+package com.vvvv.sevanUp.study.algorithm.array;
+
+import java.util.Arrays;
 
 /**
  * Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
@@ -6,7 +8,7 @@ package com.vvvv.sevanUp.study.algorithm.easy.array;
  * if there are k elements after removing the duplicates, then the first k elements of nums should hold the final result. 
  * It does not matter what you leave beyond the first k elements.
  * Return k after placing the final result in the first k slots of nums.
- * Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+ * <B>Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.</B>
  *
  * Custom Judge:
  * The judge will test your solution with the following code:
@@ -50,6 +52,7 @@ public class N27_RemoveElement {
                 nums[index++] = num;
             }
         }
+        System.out.println("nums = " + Arrays.toString(nums));
         return index;
     }
 

@@ -15,6 +15,7 @@ public class VTask implements Callable {
     private SubsinstSynTempMapper mapper;
     private String code;
     private String msg;
+    private Integer num = 0;
 
     public VTask(List<SubsinstSynTemp> temps, SubsinstSynTempMapper mapper) {
         this.temps = temps;
@@ -31,6 +32,8 @@ public class VTask implements Callable {
             } catch (Exception e) {
                 log.error("数据插入失败：{}", temp.toString());
                 failList.add(temp.getSystemid());
+            } finally {
+                ++num;
             }
         }
         if (0 != failList.size()) {
@@ -40,6 +43,7 @@ public class VTask implements Callable {
             rspVo.setResultCode("0");
             rspVo.setResultMsg("成功");
         }
+        log.info("当前线程：{},处理数量：{}",Thread.currentThread().getName(),num);
         return rspVo;
     }
 

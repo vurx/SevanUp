@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy;
+package com.vvvv.sevanUp.study.algorithm;
 
 /**
  * You are given an array prices where prices[i] is the price of a given stock on the i(th) day.

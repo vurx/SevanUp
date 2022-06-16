@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy.array;
+package com.vvvv.sevanUp.study.algorithm.array;
 
 /**
  * Given a binary array nums, return the maximum number of consecutive 1's in the array.

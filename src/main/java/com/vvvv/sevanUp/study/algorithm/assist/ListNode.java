@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy.assist;
+package com.vvvv.sevanUp.study.algorithm.assist;
 
 public class ListNode {
     public int val;

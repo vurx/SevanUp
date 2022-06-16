@@ -1,7 +1,7 @@
-package com.vvvv.sevanUp.study.algorithm.easy;
+package com.vvvv.sevanUp.study.algorithm;
 
 
-import com.vvvv.sevanUp.study.algorithm.easy.assist.ListNode;
+import com.vvvv.sevanUp.study.algorithm.assist.ListNode;
 
 /**
  * Given the head of a singly linked list, reverse the list, and return the reversed list.

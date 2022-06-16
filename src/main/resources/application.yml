@@ -4,7 +4,7 @@ server:
     context-path: /SevanUp
 spring:
   datasource:
-    url: jdbc:mysql://10.6.60.6:31060/vvvv?characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://124.222.167.129:3310/test_db?characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,14 +12,14 @@ spring:
 
 # mybatis-plus-boot-starter 写法
 mybatis-plus:
-  #todo * ** 有什么区别
+#  #todo * ** 有什么区别
   mapperLocations: classpath:mybatis/**/*Mapper.xml
   typeAliasesPackage: com.vvvv.sevanUp.model.*
 
 #  mybatis-spring-boot-starter 写法
 #mybatis:
-#  mapper-locations: classpath:mybatis/**/*Mapper.xml
-#  type-aliases-package: com.vvvv.common.user.model
+#  mapper-locations: classpath:mybatis/excel/SubsinstSynTempMapper.xml
+#  type-aliases-package: com.vvvv.sevanUp.model.excel.*
 
 logging:
   level:

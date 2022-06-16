@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy;
+package com.vvvv.sevanUp.study.algorithm;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -55,12 +55,12 @@
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
         </dependency>
-        <!-- mybatis-spring 用-->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>${mybatis.spring.version}</version>
-        </dependency>
+<!--        &lt;!&ndash; mybatis-spring 用&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis.spring.boot</groupId>-->
+<!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--            <version>${mybatis.spring.version}</version>-->
+<!--        </dependency>-->
         <!-- mybatis-plus 用-->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -94,15 +94,30 @@
     </dependencies>
     <build>
         <plugins>
+            <!-- 添加 mybatis-generator 插件（命令运行方式：进入工程目录执行：mvn mybatis-generator:generate 生成代码） -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.5</version>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-compiler-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <source>8</source>-->
+<!--                    <target>8</target>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <filtering>true</filtering>-->
+<!--                <directory>src/main/java</directory>-->
+<!--                <includes>-->
+<!--                    <include>**/*.xml</include>-->
+<!--                </includes>-->
+<!--            </resource>-->
+<!--        </resources>-->
     </build>
 
 </project>

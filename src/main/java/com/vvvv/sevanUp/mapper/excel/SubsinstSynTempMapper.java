@@ -1,9 +1,10 @@
 package com.vvvv.sevanUp.mapper.excel;
 
 import com.vvvv.sevanUp.model.excel.SubsinstSynTemp;
-import org.springframework.stereotype.Repository;
-
+import com.vvvv.sevanUp.model.excel.SubsinstSynTempExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SubsinstSynTempMapper {

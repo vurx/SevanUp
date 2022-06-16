@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.study.algorithm.easy.array;
+package com.vvvv.sevanUp.study.algorithm.array;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.vvvv.mapper.excel.SubsinstSynTempMapper">
+<mapper namespace="com.vvvv.sevanUp.mapper.excel.SubsinstSynTempMapper">
   <resultMap id="BaseResultMap" type="com.vvvv.sevanUp.model.excel.SubsinstSynTemp">
     <!--
       WARNING - @mbg.generated
@@ -29,19 +29,19 @@
 
   <insert id="insert" parameterType="com.vvvv.sevanUp.model.excel.SubsinstSynTemp">
     insert into SUBSINST_SYN_TEMP ( SYSTEMID, REGINID,
-      PRODSPECCODE, USERIDTYPE, PRODUCTNO, 
-      VPRODUCTID, SPID, PRODUCTOFFERTYPE, 
-      PRODOFFERID, STATUS, SUBSCRIBETIME, 
-      EFFDATE, EXPDATE, CHANNELPLAYERID, 
-      DEAL_FLAG, OUT_PARAM, CREATE_DATA
-      )
+                                    PRODSPECCODE, USERIDTYPE, PRODUCTNO,
+                                    VPRODUCTID, SPID, PRODUCTOFFERTYPE,
+                                    PRODOFFERID, STATUS, SUBSCRIBETIME,
+                                    EFFDATE, EXPDATE, CHANNELPLAYERID,
+                                    DEAL_FLAG, OUT_PARAM, CREATE_DATA
+    )
     values ( #{systemid,jdbcType=VARCHAR}, #{reginid,jdbcType=VARCHAR},
-      #{prodspeccode,jdbcType=VARCHAR}, #{useridtype,jdbcType=VARCHAR}, #{productno,jdbcType=VARCHAR}, 
-      #{vproductid,jdbcType=VARCHAR}, #{spid,jdbcType=VARCHAR}, #{productoffertype,jdbcType=VARCHAR}, 
-      #{prodofferid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{subscribetime,jdbcType=VARCHAR}, 
-      #{effdate,jdbcType=VARCHAR}, #{expdate,jdbcType=VARCHAR}, #{channelplayerid,jdbcType=VARCHAR}, 
-      #{dealFlag,jdbcType=DECIMAL}, #{outParam,jdbcType=VARCHAR}, #{createData,jdbcType=TIMESTAMP}
-      )
+             #{prodspeccode,jdbcType=VARCHAR}, #{useridtype,jdbcType=VARCHAR}, #{productno,jdbcType=VARCHAR},
+             #{vproductid,jdbcType=VARCHAR}, #{spid,jdbcType=VARCHAR}, #{productoffertype,jdbcType=VARCHAR},
+             #{prodofferid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{subscribetime,jdbcType=VARCHAR},
+             #{effdate,jdbcType=VARCHAR}, #{expdate,jdbcType=VARCHAR}, #{channelplayerid,jdbcType=VARCHAR},
+             #{dealFlag,jdbcType=DECIMAL}, #{outParam,jdbcType=VARCHAR}, #{createData,jdbcType=TIMESTAMP}
+           )
   </insert>
   <insert id="insertList" parameterType="java.util.List">
     INSERT INTO SUBSINST_SYN_TEMP (SYSTEMID,REGINID,PRODSPECCODE, USERIDTYPE, PRODUCTNO,
@@ -49,25 +49,25 @@
     PRODOFFERID, STATUS, SUBSCRIBETIME,
     EFFDATE, EXPDATE, CHANNELPLAYERID)
     SELECT C.* FROM
-        (
-        <foreach collection="list" item="item" index="index" separator="union all">
-          SELECT
-          #{item.systemid} as SYSTEMID,
-           #{item.reginid} as REGINID,
-           #{item.prodspeccode} as PRODSPECCODE,
-           #{item.useridtype} as USERIDTYPE,
-           #{item.productno} as PRODUCTNO,
-           #{item.vproductid} as VPRODUCTID,
-           #{item.spid} as SPID,
-           #{item.productoffertype} as PRODUCTOFFERTYPE,
-           #{item.prodofferid} as PRODOFFERID,
-           #{item.status} as STATUS,
-           #{item.subscribetime} as SUBSCRIBETIME,
-           #{item.effdate} as EFFDATE,
-           #{item.expdate} as EXPDATE,
-           #{item.channelplayerid} as CHANNELPLAYERID
-            FROM dual
-        </foreach>
-        ) C
+    (
+    <foreach collection="list" item="item" index="index" separator="union all">
+      SELECT
+      #{item.systemid} as SYSTEMID,
+      #{item.reginid} as REGINID,
+      #{item.prodspeccode} as PRODSPECCODE,
+      #{item.useridtype} as USERIDTYPE,
+      #{item.productno} as PRODUCTNO,
+      #{item.vproductid} as VPRODUCTID,
+      #{item.spid} as SPID,
+      #{item.productoffertype} as PRODUCTOFFERTYPE,
+      #{item.prodofferid} as PRODOFFERID,
+      #{item.status} as STATUS,
+      #{item.subscribetime} as SUBSCRIBETIME,
+      #{item.effdate} as EFFDATE,
+      #{item.expdate} as EXPDATE,
+      #{item.channelplayerid} as CHANNELPLAYERID
+        FROM dual
+    </foreach>
+    ) C
   </insert>
 </mapper>
