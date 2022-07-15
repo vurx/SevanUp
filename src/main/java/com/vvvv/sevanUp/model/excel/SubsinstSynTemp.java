@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
+// 支持链式调用
 @Accessors(chain = true)
 public class SubsinstSynTemp implements Serializable {
     private Integer id;

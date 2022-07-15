@@ -45,32 +45,36 @@ import java.util.Arrays;
  */
 public class N27_RemoveElement {
 
-    static int removeElement1(int[] nums, int val) {
-        int index = 0;
-        for(int num:nums){
-            if(num != val){
-                nums[index++] = num;
-            }
+    private static int removeElement1(int[] nums, int i) {
+        for (int num : nums) {
+            
         }
-        System.out.println("nums = " + Arrays.toString(nums));
-        return index;
+        return 0;
     }
+    
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 2, 2, 3, 5, 2};
         System.out.println(removeElement1(nums, 2));
     }
 
-
-
-
-
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     static int removeElement(int[] nums, int val) {
         int index = 0;

@@ -8,6 +8,7 @@ public enum ReturnInfoEnum {
     ERROR(-1,"error"),
     NET_ERROR(-9001,"network error."),
     URL_PARSE_ERROR(-9002,"url parse error."),
+    TRANSFER_DATESTR_ERROR(-9003,"transfer dateStr error."),
     UNKNOWN_ERROR(-9999,"unknow error."),
     ;
     private Integer code;
