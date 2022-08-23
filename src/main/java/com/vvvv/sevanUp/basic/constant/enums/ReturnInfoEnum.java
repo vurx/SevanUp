@@ -4,12 +4,13 @@ package com.vvvv.sevanUp.basic.constant.enums;
  * 返回信息枚举
  */
 public enum ReturnInfoEnum {
-    SUCCESS(0,"success"),
-    ERROR(-1,"error"),
-    NET_ERROR(-9001,"network error."),
-    URL_PARSE_ERROR(-9002,"url parse error."),
-    TRANSFER_DATESTR_ERROR(-9003,"transfer dateStr error."),
-    UNKNOWN_ERROR(-9999,"unknow error."),
+    SUCCESS(0, "success"),
+    ERROR(-1, "error"),
+    NET_ERROR(-9001, "network error."),
+    URL_PARSE_ERROR(-9002, "url parse error."),
+    TRANSFER_DATESTR_ERROR(-9003, "transfer dateStr error."),
+    QY_WECHAT_MSGCRYPT_ERROR(-9004, "qy wechat msgcrypt error."),
+    UNKNOWN_ERROR(-9999, "unknow error."),
     ;
     private Integer code;
     private String msg;

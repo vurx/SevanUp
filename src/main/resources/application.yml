@@ -49,22 +49,6 @@ xss:
   excludes:
   urlPatterns: /*
 
-kafka:
-  bootstrap-servers: 47.96.238.1:9092
-  producer:
-    retries: 1
-    batch-size: 10000  #每次发送大小
-    buffer-memory: 33554432
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer #编码格式
-    value-serializer: org.apache.kafka.common.serialization.StringSerializer
-  consumer:
-    group-id: vvvv
-    auto-offset-reset: earliest #当Kafka中没有初始偏移量或者服务器上不再存在当前偏移量时该怎么办，默认值为latest，表示自动将偏移重置为最新的偏移量
-    enable-auto-commit: true  #如果为true，则消费者的偏移量将在后台定期提交，默认值为tru
-    auto-commit-interval: 100  #如果'enable.auto.commit'为true，则消费者偏移自动提交给Kafka的频率（以毫秒为单位），默认值为5000。
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer #编码格式
-    value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
 ## 轻量级HTTP客户端框架forest
 forest:
   # 配置底层API为 okhttp3
