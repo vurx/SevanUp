@@ -27,9 +27,9 @@ import java.util.*;
 public class Parking {
 
     // 停车入场时间
-    Date park;
-    String parkStr, parkPic = "https://s3.bmp.ovh/imgs/2022/07/07/65cca3da6ab77929.jpg";
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public Date park;
+    public String parkStr, parkPic = "https://s3.bmp.ovh/imgs/2022/07/07/65cca3da6ab77929.jpg";
+    public SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     @Autowired
     private OutterHttpClient outterHttpClient;
@@ -82,7 +82,7 @@ public class Parking {
      */
     @Scheduled(cron = "0 0/1 * * * ? ")
     public void scheduled1() {
-        if (park != null && parkStr != null && parkPic != null) {
+        if (null != park && null != parkStr && parkPic != null) {
             // 当前时间
             Date now = new Date();
             String nowStr = sdf.format(now);
@@ -90,7 +90,7 @@ public class Parking {
             long s = (l / 1000) % 60;
             l = l / 1000 / 60;
             String description = "入场时间：" + parkStr + " \n通知时间：" + nowStr;
-            if (l >= 110 && l <= 114) {
+            if (l >= 110 && l <= 111) {
                 // 快到停车时间
                 String title = "您已停车" + l + "分钟" + s + "秒，即将收费！";
                 HashMap<String, String> param = new HashMap<String,String>() {{
