@@ -52,11 +52,11 @@ public class MessageRobotController {
     /**
      * 企业微信-agentID-1000002 消息监听方法
      *
-     * @param msg_signature
-     * @param timestamp
-     * @param nonce
-     * @param xmlParam
-     * @return
+     * @param msg_signature 校验
+     * @param timestamp 时间戳
+     * @param nonce 随机值
+     * @param xmlParam 消息主题
+     * @return 需要回复的消息体
      */
     @RequestMapping(value = "/accept", produces = {"application/xml;charset = utf-8"})
     public String accept(String msg_signature, String timestamp, String nonce, @RequestBody String xmlParam) {
@@ -64,10 +64,7 @@ public class MessageRobotController {
         try {
             String sMsg = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, xmlParam);
             log.info("解密入参：{}", sMsg);
-            // 解析xml
-            String content = messageRobotService.analysisXml(sMsg);
-            log.info("接收到信息：{}", content);
-            String sRespData = messageRobotService.jugeSelect(content);
+            String sRespData = messageRobotService.handleMsg(sMsg);
             return wxcpt.EncryptMsg(sRespData, DateUtil.currentTimeSeconds(), nonce);
         } catch (AesException | SAXException | IOException | ParserConfigurationException e) {
             throw new VurxException(ReturnInfoEnum.QY_WECHAT_MSGCRYPT_ERROR);

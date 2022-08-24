@@ -19,7 +19,45 @@ import java.io.StringReader;
 @Slf4j
 public class MessageRobotService {
 
-    public String analysisXml(String sMsg) throws ParserConfigurationException, IOException, SAXException {
+
+    public String handleMsg(String msg) throws ParserConfigurationException, IOException, SAXException {
+        // 1.解析xml --> 发送人 内容
+        String[] args = analysisXml(msg);
+        // 2.根据内容解析
+        judgeSelect(args);
+        // 3.构造回复消息主体
+        return "";
+    }
+
+    /*
+    <xml>
+        <ToUserName>
+            <![CDATA[ww99d788dc16c357a8]]>
+        </ToUserName>
+        <FromUserName>
+            <![CDATA[WuSuHuan]]>
+        </FromUserName>
+        <CreateTime>1661306454</CreateTime>
+        <MsgType>
+            <![CDATA[text]]>
+        </MsgType>
+        <Content>
+            <![CDATA[5]]>
+        </Content>
+        <MsgId>7135256889666861590</MsgId>
+        <AgentID>1000002</AgentID>
+    </xml>
+     */
+
+    /**
+     * 分析接受的消息的xml
+     * @param sMsg 入参的xml
+     * @return String[fromUserName, content]
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     */
+    public String[] analysisXml(String sMsg) throws ParserConfigurationException, IOException, SAXException {
         // 解析xml
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
@@ -27,19 +65,30 @@ public class MessageRobotService {
         InputSource is = new InputSource(sr);
         Document document = db.parse(is);
         Element root = document.getDocumentElement();
-        NodeList nodelist1 = root.getElementsByTagName("Content");
-        String content = nodelist1.item(0).getTextContent();
-        return content;
+        NodeList contentNode = root.getElementsByTagName("Content");
+        NodeList fromNode = root.getElementsByTagName("FromUserName");
+        String[] args = new String[2];
+        String content = contentNode.item(0).getTextContent();
+        String fromUserName = fromNode.item(0).getTextContent();
+        args[0] = fromUserName;
+        args[1] = content;
+        return args;
     }
 
-    public String jugeSelect(String content) {
-        if (content.contains("功能") && content.contains("查看")) {
-            String msg = "备忘录\n聊天机器人";
-            return reply(msg);
+    public String judgeSelect(String... args) {
+        String fromUserName = args[0];
+        String content = args[1];
+        String msg;
+        if (content.contains("功能") || content.contains("查看")) {
+            msg = "1.备忘录\n2.聊天机器人\n3.天气\n4.";
+        } else if(content.contains("备忘录")){
+            msg = "功能开发中....";
+        } else if(content.contains("聊天") || content.contains("机器人")){
+            msg = "功能开发中....";
         } else {
-            String msg = "请输入”功能查看“...";
-            return reply(msg);
+            msg = "请输入【功能查看】....";
         }
+        return reply(msg);
     }
 
 
