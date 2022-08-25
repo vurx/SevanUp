@@ -7,7 +7,7 @@ import com.vvvv.sevanUp.basic.exception.VurxException;
 /**
  * 操作类的简单工厂
  */
-public abstract class OperationFactory {
+public class OperationFactory {
     public static Operation createOperate(String operator) {
         Operation oper;
         switch (operator) {
@@ -27,5 +27,31 @@ public abstract class OperationFactory {
                 throw new VurxException(ReturnInfoEnum.ERROR);
         }
         return oper;
+    }
+    public static void main(String[] args) {
+        Operation operate = OperationFactory.createOperate("+");
+        operate.numberA = 20d;
+        operate.numberB = 10d;
+        System.out.println("operate.getResult() = " + operate.getResult());
+
+        operate = OperationFactory.createOperate("-");
+        operate.numberA = 20d;
+        operate.numberB = 10d;
+        System.out.println("operate.getResult() = " + operate.getResult());
+
+        operate = OperationFactory.createOperate("*");
+        operate.numberA = 20d;
+        operate.numberB = 10d;
+        System.out.println("operate.getResult() = " + operate.getResult());
+
+        operate = OperationFactory.createOperate("/");
+        operate.numberA = 20d;
+        operate.numberB = 10d;
+        System.out.println("operate.getResult() = " + operate.getResult());
+
+        operate = OperationFactory.createOperate("x");
+        operate.numberA = 20d;
+        operate.numberB = 10d;
+        System.out.println("operate.getResult() = " + operate.getResult());
     }
 }
