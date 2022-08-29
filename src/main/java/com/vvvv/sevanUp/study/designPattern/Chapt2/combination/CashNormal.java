@@ -1,8 +1,5 @@
-package com.vvvv.sevanUp.study.designPattern.Chapt2.factory;
+package com.vvvv.sevanUp.study.designPattern.Chapt2.combination;
 
-/**
- * 操作类：正常收银
- */
 public class CashNormal extends CashSuper {
     @Override
     public Double discount(Double totalMoney) {

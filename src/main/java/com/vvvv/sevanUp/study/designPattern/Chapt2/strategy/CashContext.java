@@ -1,39 +1,28 @@
 package com.vvvv.sevanUp.study.designPattern.Chapt2.strategy;
 
-import com.vvvv.sevanUp.basic.constant.enums.ReturnInfoEnum;
-import com.vvvv.sevanUp.basic.exception.VurxException;
-import org.junit.Test;
-
-
+/**
+ * 策略上下文类
+ */
 public class CashContext {
+    /**
+     * 抽象策略
+     */
     CashSuper cs;
 
+    /**
+     * 抽象策略的具体策略实现
+     * @param cs 具体的策略实例
+     */
     public CashContext(CashSuper cs) {
         this.cs = cs;
     }
 
+    /**
+     * 调用具体策略实例的discount方法
+     * @param totalMoney
+     * @return
+     */
     public Double getResult(Double totalMoney) {
         return cs.discount(totalMoney);
-    }
-
-
-   @Test
-    public void test(String flag) {
-        CashContext cc;
-        switch (flag) {
-            case "0":
-                cc = new CashContext(new CashNormal());
-                break;
-            case "1":
-                cc = new CashContext(new CashRebate(0.77d));
-                break;
-            case "2":
-                cc = new CashContext(new CashReturn(300d, 100d));
-                break;
-            default:
-                throw new VurxException(ReturnInfoEnum.ERROR);
-        }
-        System.out.println(cc.getResult(1000d));
-
     }
 }
