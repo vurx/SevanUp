@@ -1,6 +1,6 @@
 package com.vvvv.sevanUp.study.designPattern.Chapt3.demo;
 
-public class ConcreteDecoratorB extends Decorator{
+public class ConcreteDecoratorB extends Decorator {
 
     @Override
     public void operation() {

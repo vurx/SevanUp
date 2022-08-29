@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class TestDemo {
     @Test
-    public void test(){
+    public void test() {
         Person xc = new Person();
         xc.setName("小菜");
 
@@ -26,7 +26,6 @@ public class TestDemo {
         tie.decorate(leatherShoes);
         suit.decorate(tie);
         suit.show();
-
 
 
     }

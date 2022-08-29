@@ -1,6 +1,6 @@
 package com.vvvv.sevanUp.study.designPattern.Chapt3.demo;
 
-public class ConcreteDecoratorA extends Decorator{
+public class ConcreteDecoratorA extends Decorator {
     private String addedState;
 
     @Override
