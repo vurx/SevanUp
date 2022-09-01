@@ -30,9 +30,9 @@ public class RedisConsumerRunner implements ApplicationRunner {
     @Autowired
     public void setRedisKQueueKeyMap(List<RedisQueueConsumerService> redisKQueueKeys) {
         // 注入各种类型的实现类
-        redisKQueueKeyMap = redisKQueueKeys.stream().collect(
-                Collectors.toMap(t -> AnnotationUtils.findAnnotation(t.getClass(), RedisQueueKey.class).source(),
-                        v -> v, (v1, v2) -> v1));
+//        redisKQueueKeyMap = redisKQueueKeys.stream().collect(
+//                Collectors.toMap(t -> AnnotationUtils.findAnnotation(t.getClass(), RedisQueueKey.class).source(),
+//                        v -> v, (v1, v2) -> v1));
     }
 
     @Override
