@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public abstract class RedisQueueConsumerService {
 
-    public abstract void deal(RedisQueueKey redisQueueKey);
+    public abstract void deal();
 
     public void updateResourceById() {
-        log.info("更新");
+        log.info("updateResourceById");
     }
 }

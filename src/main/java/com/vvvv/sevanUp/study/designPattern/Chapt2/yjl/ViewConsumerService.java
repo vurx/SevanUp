@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class ViewConsumerService extends RedisQueueConsumerService{
     @Override
-    public void deal(RedisQueueKey redisQueueKey) {
+    public void deal() {
         updateResourceById();
         log.info("浏览量更新");
     }
