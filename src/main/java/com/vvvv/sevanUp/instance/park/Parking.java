@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.vvvv.sevanUp.basic.OutterHttpClient;
 import com.vvvv.sevanUp.basic.constant.enums.ReturnInfoEnum;
 import com.vvvv.sevanUp.basic.exception.VurxException;
+import com.vvvv.sevanUp.instance.Wechat;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -28,9 +29,7 @@ public class Parking {
     boolean scheduledSwitch = false;
 
     @Autowired
-    private OutterHttpClient outterHttpClient;
-
-    private String token;
+    private Wechat wechat;
 
     @Autowired
     private StringRedisTemplate redisTemplate;
@@ -44,9 +43,6 @@ public class Parking {
     @PostConstruct // @PostConstruct注解修饰的方法其生命周期位于构造方法调用之后，在Spring属性值注入之前
     public void initParkInfo() {
         if (scheduledSwitch) {
-            String jsonToken = outterHttpClient.getToken();
-            JSONObject jsonObject = JSONObject.parseObject(jsonToken);
-            token  = jsonObject.getString("access_token");
             parkStr = redisTemplate.opsForValue().get("parkStr");
             try {
                 park = sdf.parse(parkStr);
@@ -82,7 +78,7 @@ public class Parking {
                         put("picurl", parkPic);
                         put("url", parkPic);
                     }};
-                    sendMsg(param);
+                    wechat.sendMsg(param);
                 } else if (l == 60 || l == 90) {
                     log.info("已经停车{}分钟{}秒", l, s);
                     String title = "您已停车" + l + "分钟" + s + "秒！";
@@ -92,33 +88,10 @@ public class Parking {
                         put("picurl", parkPic);
                         put("url", parkPic);
                     }};
-                    sendMsg(param);
+                    wechat.sendMsg(param);
                 }
                 log.info("已经停车{}分钟{}秒", l, s);
             }
         }
-    }
-
-
-    /**
-     * 发送企业微信消息
-     *
-     * @param param
-     */
-    public void sendMsg(HashMap<String, String> param) {
-        Map<String, Object> sendMap = new HashMap<>();
-        sendMap.put("touser", "@all");
-        sendMap.put("msgtype", "news");
-        sendMap.put("agentid", "1000002");
-        sendMap.put("enable_id_trans", 0);
-        sendMap.put("enable_duplicate_check", 0);
-        sendMap.put("duplicate_check_interval", 1800);
-        Map<String, Object> news = new HashMap<>();
-        List<HashMap<String, String>> articles = new ArrayList<HashMap<String, String>>() {{
-            add(param);
-        }};
-        news.put("articles", articles);
-        sendMap.put("news", news);
-        outterHttpClient.sendWechatMsg(token, sendMap);
     }
 }

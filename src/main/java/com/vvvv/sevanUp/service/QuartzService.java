@@ -12,7 +12,7 @@ public interface QuartzService {
 
     PageInfo<JobAndTriggerDto> getJobAndTriggerDetails(Integer pageNum, Integer pageSize);
 
-    void addjob(String jName, String jGroup, String tName, String tGroup, String cron);
+    void addjob(String jName, String jGroup, String tName, String tGroup, String description, String cron);
 
     void pausejob(String jName, String jGroupe) throws SchedulerException;
 

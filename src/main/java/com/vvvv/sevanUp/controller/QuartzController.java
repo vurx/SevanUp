@@ -25,24 +25,24 @@ public class QuartzController {
     /**
      * 新增定时任务
      *
-     * @param name 任务名称
+     * @param name  任务名称
      * @param group 任务组
-     * @param cron cron表达式
+     * @param cron  cron表达式
      * @return ResultMap
      */
     @PostMapping(path = "/addjob")
     @ResponseBody
-    public String addjob(String name, String group, String cron) {
+    public String addjob(String name, String group, String description, String cron) {
         String jName = name + "_job";
         String tName = name + "_trigger";
-        quartzService.addjob(jName, group, tName, group, cron);
+        quartzService.addjob(jName, group, tName, group, description, cron);
         return "添加任务成功";
     }
 
     /**
      * 暂停任务
      *
-     * @param jName 任务名称
+     * @param jName  任务名称
      * @param jGroup 任务组
      * @return ResultMap
      */
@@ -61,7 +61,7 @@ public class QuartzController {
     /**
      * 恢复任务
      *
-     * @param jName 任务名称
+     * @param jName  任务名称
      * @param jGroup 任务组
      * @return ResultMap
      */
@@ -80,9 +80,9 @@ public class QuartzController {
     /**
      * 重启任务
      *
-     * @param jName 任务名称
+     * @param jName  任务名称
      * @param jGroup 任务组
-     * @param cron cron表达式
+     * @param cron   cron表达式
      * @return ResultMap
      */
     @PostMapping(path = "/reschedulejob")
@@ -100,7 +100,7 @@ public class QuartzController {
     /**
      * 删除任务
      *
-     * @param jName 任务名称
+     * @param jName  任务名称
      * @param jGroup 任务组
      * @return ResultMap
      */
@@ -119,7 +119,7 @@ public class QuartzController {
     /**
      * 查询任务
      *
-     * @param pageNum 页码
+     * @param pageNum  页码
      * @param pageSize 每页显示多少条数据
      * @return Map
      */

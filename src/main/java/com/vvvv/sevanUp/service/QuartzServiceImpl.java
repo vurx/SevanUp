@@ -6,7 +6,7 @@ import com.vvvv.sevanUp.basic.constant.enums.ReturnInfoEnum;
 import com.vvvv.sevanUp.basic.exception.VurxException;
 import com.vvvv.sevanUp.mapper.quartz.JobDetailMapper;
 import com.vvvv.sevanUp.model.quartz.JobAndTriggerDto;
-import com.vvvv.sevanUp.quartz.HelloJob;
+import com.vvvv.sevanUp.quartz.RemindJob;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +42,12 @@ public class QuartzServiceImpl implements QuartzService {
      * @param cron   cron表达式
      */
     @Override
-    public void addjob(String jName, String jGroup, String tName, String tGroup, String cron) {
+    public void addjob(String jName, String jGroup, String tName, String tGroup, String description, String cron) {
         try {
             // 构建JobDetail
-            JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
+            JobDetail jobDetail = JobBuilder.newJob(RemindJob.class)
                     .withIdentity(jName, jGroup)
+                    .withDescription(description)
                     .build();
             // 按新的cronExpression表达式构建一个新的trigger
             CronTrigger trigger = TriggerBuilder.newTrigger()
