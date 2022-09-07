@@ -34,19 +34,19 @@
         <include refid="Base_Column_List" />
         ,
         <include refid="Blob_Column_List" />
-        from qrtz_triggers
+        from QRTZ_TRIGGERS
         where SCHED_NAME = #{schedName,jdbcType=VARCHAR}
         and TRIGGER_NAME = #{triggerName,jdbcType=VARCHAR}
         and TRIGGER_GROUP = #{triggerGroup,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.vvvv.sevanUp.model.quartz.TriggerKey">
-        delete from qrtz_triggers
+        delete from QRTZ_TRIGGERS
         where SCHED_NAME = #{schedName,jdbcType=VARCHAR}
           and TRIGGER_NAME = #{triggerName,jdbcType=VARCHAR}
           and TRIGGER_GROUP = #{triggerGroup,jdbcType=VARCHAR}
     </delete>
     <insert id="insert" parameterType="com.vvvv.sevanUp.model.quartz.Trigger">
-        insert into qrtz_triggers (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP,
+        insert into QRTZ_TRIGGERS (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP,
                                    JOB_NAME, JOB_GROUP, DESCRIPTION,
                                    NEXT_FIRE_TIME, PREV_FIRE_TIME, PRIORITY,
                                    TRIGGER_STATE, TRIGGER_TYPE, START_TIME,
@@ -60,7 +60,7 @@
                 #{jobData,jdbcType=LONGVARBINARY})
     </insert>
     <insert id="insertSelective" parameterType="com.vvvv.sevanUp.model.quartz.Trigger">
-        insert into qrtz_triggers
+        insert into QRTZ_TRIGGERS
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="schedName != null">
                 SCHED_NAME,
@@ -163,7 +163,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.vvvv.sevanUp.model.quartz.Trigger">
-        update qrtz_triggers
+        update QRTZ_TRIGGERS
         <set>
             <if test="jobName != null">
                 JOB_NAME = #{jobName,jdbcType=VARCHAR},
@@ -210,7 +210,7 @@
         and TRIGGER_GROUP = #{triggerGroup,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.vvvv.sevanUp.model.quartz.Trigger">
-        update qrtz_triggers
+        update QRTZ_TRIGGERS
         set JOB_NAME = #{jobName,jdbcType=VARCHAR},
             JOB_GROUP = #{jobGroup,jdbcType=VARCHAR},
             DESCRIPTION = #{description,jdbcType=VARCHAR},
@@ -229,7 +229,7 @@
           and TRIGGER_GROUP = #{triggerGroup,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.vvvv.sevanUp.model.quartz.Trigger">
-        update qrtz_triggers
+        update QRTZ_TRIGGERS
         set JOB_NAME = #{jobName,jdbcType=VARCHAR},
             JOB_GROUP = #{jobGroup,jdbcType=VARCHAR},
             DESCRIPTION = #{description,jdbcType=VARCHAR},

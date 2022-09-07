@@ -3,6 +3,8 @@ package com.vvvv.sevanUp.study.lambda;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -78,32 +80,39 @@ public class TestLambda {
     @Test
     public void test4() {
         // maxBy(最大的工资)
-        System.out.println(emps.stream().map(Employee::getSalary).collect(Collectors.maxBy(Double::compareTo)).get());
+//        System.out.println(emps.stream().map(Employee::getSalary).collect(Collectors.maxBy(Double::compareTo)).get());
+//        System.out.println(emps.stream().map(Employee::getSalary).max(Double::compareTo).get());
+//        System.out.println(emps.stream().mapToDouble(Employee::getSalary).max().getAsDouble());
+//        System.out.println(emps.stream().max(Comparator.comparingDouble(Employee::getSalary)).get().getSalary());
+        // minBy(最小的年龄，不使用map映射) 同max
 
-        // minBy(最小的年龄，不使用map映射)
-        emps.stream().collect(Collectors.minBy(Comparator.comparingInt(Employee::getAge)));
 
         // summingDouble(薪资总和)
-        System.out.println(emps.stream().collect(Collectors.summingDouble(Employee::getSalary)));
+//        System.out.println(emps.stream().collect(Collectors.summingDouble(Employee::getSalary)));
+//        System.out.println(emps.stream().mapToDouble(Employee::getSalary).sum());
 
-        // averagingDouble(平均年龄)
-        System.out.println(emps.stream().collect(Collectors.averagingDouble(Employee::getAge)));
 
-        // counting(年龄大于50的员工的数量)
+//        // averagingDouble(平均年龄)
+//        System.out.println(emps.stream().collect(Collectors.averagingDouble(Employee::getAge)));
+//        System.out.println(emps.stream().mapToInt(Employee::getAge).average().getAsDouble());
+//
+//        // counting(年龄大于50的员工的数量)
         System.out.println(emps.stream().filter(t -> t.getAge() < 50).collect(Collectors.counting()));
+        System.out.println(emps.stream().filter(t -> t.getAge() < 50).count());
 
-        // summarizingDouble
-        DoubleSummaryStatistics collect = emps.stream().collect(Collectors.summarizingDouble(Employee::getSalary));
-        // 获取薪资平均值
-        System.out.println(collect.getAverage());
-        // 获取薪资最大值
-        System.out.println(collect.getMax());
-        // 获取薪资最小值
-        System.out.println(collect.getMin());
-        // 获取collect里面的数量
-        System.out.println(collect.getCount());
-        // 获取薪资总和
-        System.out.println(collect.getSum());
+//
+//        // summarizingDouble
+//        DoubleSummaryStatistics collect = emps.stream().collect(Collectors.summarizingDouble(Employee::getSalary));
+//        // 获取薪资平均值
+//        System.out.println(collect.getAverage());
+//        // 获取薪资最大值
+//        System.out.println(collect.getMax());
+//        // 获取薪资最小值
+//        System.out.println(collect.getMin());
+//        // 获取collect里面的数量
+//        System.out.println(collect.getCount());
+//        // 获取薪资总和
+//        System.out.println(collect.getSum());
     }
 
     //分组
@@ -143,20 +152,35 @@ public class TestLambda {
     //
     @Test
     public void test8() {
-        String str = emps.stream()
-                .map(Employee::getName)
-                .collect(Collectors.joining(",", "----", "----"));
+//        System.out.println(emps.stream().map(Employee::getName).collect(Collectors.joining(",", "[", "]")));
+        ArrayList<List<String>> strings = new ArrayList<>();
+        strings.add(Arrays.asList("1", "2", "3", "4"));
+        strings.add(Arrays.asList("2", "3", "4", "5"));
+        strings.add(Arrays.asList("3", "4", "5", "6"));
 
-        System.out.println(str);
+//        // 非并行流
+//        System.out.println(strings.stream().flatMap(Collection::stream).collect(Collectors.toList()));
+////        System.out.println("reduce1:" + reduce1);
+        List<Integer> strings1 = Arrays.asList(1, 2, 3, 4);
+        System.out.println(strings1.stream().reduce(0, (x, y) -> {
+            System.out.println("currentThreadId：["+Thread.currentThread().getId()+"]x----:" + x + ",y----:" + y);
+            return x + y;
+        }));
+//        System.out.println(strings1.parallelStream().reduce(0,
+//                (a, b) -> {
+//                    System.out.println("currentThreadId：["+Thread.currentThread().getId()+"]a----:" + a + ",b----:" + b);
+//                    return a + b;
+//                },
+//                (x, y) -> {
+//                    System.out.println("currentThreadId：["+Thread.currentThread().getId()+"]x----:" + x + ",y----:" + y);
+//                    return x + y;
+//                }));
     }
 
     @Test
     public void test9() {
-        Optional<Double> sum = emps.stream()
-                .map(Employee::getSalary)
-                .collect(Collectors.reducing(Double::sum));
-
-        System.out.println(sum.get());
+        System.out.println(emps.stream().map(Employee::getSalary).collect(Collectors.reducing(Double::sum)).get());
+        System.out.println(emps.stream().map(Employee::getSalary).reduce(Double::sum).get());
     }
 
     public static Stream<Character> filterCharacter(String str) {

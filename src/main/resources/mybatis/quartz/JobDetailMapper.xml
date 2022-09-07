@@ -26,20 +26,20 @@
 
     <select id="getJobAndTriggerDetails" resultType="com.vvvv.sevanUp.model.quartz.JobAndTriggerDto">
         SELECT DISTINCT
-            qrtz_job_details.JOB_NAME,
-            qrtz_job_details.JOB_GROUP,
-            qrtz_job_details.JOB_CLASS_NAME,
-            qrtz_triggers.TRIGGER_NAME,
-            qrtz_triggers.TRIGGER_GROUP,
-            qrtz_cron_triggers.CRON_EXPRESSION,
-            qrtz_cron_triggers.TIME_ZONE_ID
+            QRTZ_JOB_DETAILS.JOB_NAME,
+            QRTZ_JOB_DETAILS.JOB_GROUP,
+            QRTZ_JOB_DETAILS.JOB_CLASS_NAME,
+            QRTZ_TRIGGERS.TRIGGER_NAME,
+            QRTZ_TRIGGERS.TRIGGER_GROUP,
+            QRTZ_CRON_TRIGGERS.CRON_EXPRESSION,
+            QRTZ_CRON_TRIGGERS.TIME_ZONE_ID
         FROM
-            qrtz_job_details
-                LEFT JOIN qrtz_triggers ON qrtz_triggers.TRIGGER_GROUP = qrtz_job_details.JOB_GROUP
-                LEFT JOIN qrtz_cron_triggers ON qrtz_job_details.JOB_NAME = qrtz_triggers.JOB_NAME
+            QRTZ_JOB_DETAILS
+                LEFT JOIN QRTZ_TRIGGERS ON QRTZ_TRIGGERS.TRIGGER_GROUP = QRTZ_JOB_DETAILS.JOB_GROUP
+                LEFT JOIN QRTZ_CRON_TRIGGERS ON QRTZ_JOB_DETAILS.JOB_NAME = QRTZ_TRIGGERS.JOB_NAME
         WHERE
-            qrtz_triggers.TRIGGER_NAME = qrtz_cron_triggers.TRIGGER_NAME
-          AND qrtz_triggers.TRIGGER_GROUP = qrtz_cron_triggers.TRIGGER_GROUP
+            QRTZ_TRIGGERS.TRIGGER_NAME = QRTZ_CRON_TRIGGERS.TRIGGER_NAME
+          AND QRTZ_TRIGGERS.TRIGGER_GROUP = QRTZ_CRON_TRIGGERS.TRIGGER_GROUP
     </select>
 
     <select id="selectByPrimaryKey" parameterType="com.vvvv.sevanUp.model.quartz.JobDetailKey" resultMap="ResultMapWithBLOBs">
@@ -47,20 +47,20 @@
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
-        from qrtz_job_details
+        from QRTZ_JOB_DETAILS
         where SCHED_NAME = #{schedName,jdbcType=VARCHAR}
         and JOB_NAME = #{jobName,jdbcType=VARCHAR}
         and JOB_GROUP = #{jobGroup,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="com.vvvv.sevanUp.model.quartz.JobDetailKey">
         delete
-        from qrtz_job_details
+        from QRTZ_JOB_DETAILS
         where SCHED_NAME = #{schedName,jdbcType=VARCHAR}
           and JOB_NAME = #{jobName,jdbcType=VARCHAR}
           and JOB_GROUP = #{jobGroup,jdbcType=VARCHAR}
     </delete>
     <insert id="insert" parameterType="com.vvvv.sevanUp.model.quartz.JobDetail">
-        insert into qrtz_job_details (SCHED_NAME, JOB_NAME, JOB_GROUP,
+        insert into QRTZ_JOB_DETAILS (SCHED_NAME, JOB_NAME, JOB_GROUP,
                                       DESCRIPTION, JOB_CLASS_NAME, IS_DURABLE,
                                       IS_NONCONCURRENT, IS_UPDATE_DATA, REQUESTS_RECOVERY,
                                       JOB_DATA)
@@ -71,7 +71,7 @@
                 #{jobData,jdbcType=LONGVARBINARY})
     </insert>
     <insert id="insertSelective" parameterType="com.vvvv.sevanUp.model.quartz.JobDetail">
-        insert into qrtz_job_details
+        insert into QRTZ_JOB_DETAILS
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="schedName != null">
                 SCHED_NAME,
@@ -138,7 +138,7 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.vvvv.sevanUp.model.quartz.JobDetail">
-        update qrtz_job_details
+        update QRTZ_JOB_DETAILS
         <set>
             <if test="description != null">
                 DESCRIPTION = #{description,jdbcType=VARCHAR},
@@ -167,7 +167,7 @@
         and JOB_GROUP = #{jobGroup,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.vvvv.sevanUp.model.quartz.JobDetail">
-        update qrtz_job_details
+        update QRTZ_JOB_DETAILS
         set DESCRIPTION       = #{description,jdbcType=VARCHAR},
             JOB_CLASS_NAME    = #{jobClassName,jdbcType=VARCHAR},
             IS_DURABLE        = #{isDurable,jdbcType=VARCHAR},
@@ -180,7 +180,7 @@
           and JOB_GROUP = #{jobGroup,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.vvvv.sevanUp.model.quartz.JobDetail">
-        update qrtz_job_details
+        update QRTZ_JOB_DETAILS
         set DESCRIPTION       = #{description,jdbcType=VARCHAR},
             JOB_CLASS_NAME    = #{jobClassName,jdbcType=VARCHAR},
             IS_DURABLE        = #{isDurable,jdbcType=VARCHAR},
