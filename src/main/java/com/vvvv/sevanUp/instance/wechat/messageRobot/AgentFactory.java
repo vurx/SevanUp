@@ -1,4 +1,4 @@
-package com.vvvv.sevanUp.instance.MessageRobot;
+package com.vvvv.sevanUp.instance.wechat.messageRobot;
 
 import com.vvvv.sevanUp.util.aes.WXBizMsgCrypt;
 
@@ -8,6 +8,7 @@ public abstract class AgentFactory {
      */
     String sCorpID;
 
+    // TODO 从配置文件中获取
     public AgentFactory() {
         this.sCorpID = "ww99d788dc16c357a8";
     }

@@ -2,7 +2,7 @@ package com.vvvv.sevanUp.controller;
 
 import com.vvvv.sevanUp.basic.constant.enums.ReturnInfoEnum;
 import com.vvvv.sevanUp.basic.exception.VurxException;
-import com.vvvv.sevanUp.instance.MessageRobot.AgentParking;
+import com.vvvv.sevanUp.instance.wechat.messageRobot.AgentParking;
 import com.vvvv.sevanUp.service.MessageRobotService;
 import com.vvvv.sevanUp.util.DateUtil;
 import com.vvvv.sevanUp.util.aes.AesException;

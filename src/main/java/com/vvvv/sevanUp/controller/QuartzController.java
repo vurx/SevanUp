@@ -32,25 +32,25 @@ public class QuartzController {
      */
     @PostMapping(path = "/addjob")
     @ResponseBody
-    public String addjob(String name, String group, String description, String cron) {
+    public String addjob(String name, String group, String desc, String cron, String user) {
         String jName = name + "_job";
         String tName = name + "_trigger";
-        quartzService.addjob(jName, group, tName, group, description, cron);
+        quartzService.addjob(jName, group, tName, group, desc, cron, user);
         return "添加任务成功";
     }
 
     /**
      * 暂停任务
      *
-     * @param jName  任务名称
-     * @param jGroup 任务组
+     * @param name  任务名称
+     * @param group 任务组
      * @return ResultMap
      */
     @PostMapping(path = "/pausejob")
     @ResponseBody
-    public String pausejob(String jName, String jGroup) {
+    public String pausejob(String name, String group) {
         try {
-            quartzService.pausejob(jName, jGroup);
+            quartzService.pausejob(name + "_job", group);
             return "暂停任务成功";
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -61,15 +61,15 @@ public class QuartzController {
     /**
      * 恢复任务
      *
-     * @param jName  任务名称
-     * @param jGroup 任务组
+     * @param name  任务名称
+     * @param group 任务组
      * @return ResultMap
      */
     @PostMapping(path = "/resumejob")
     @ResponseBody
-    public String resumejob(String jName, String jGroup) {
+    public String resumejob(String name, String group) {
         try {
-            quartzService.resumejob(jName, jGroup);
+            quartzService.resumejob(name + "_job", group);
             return "恢复任务成功";
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -80,16 +80,16 @@ public class QuartzController {
     /**
      * 重启任务
      *
-     * @param jName  任务名称
-     * @param jGroup 任务组
-     * @param cron   cron表达式
+     * @param name  任务名称
+     * @param group 任务组
+     * @param cron  cron表达式
      * @return ResultMap
      */
     @PostMapping(path = "/reschedulejob")
     @ResponseBody
-    public String rescheduleJob(String jName, String jGroup, String cron) {
+    public String rescheduleJob(String name, String group, String cron, String desc) {
         try {
-            quartzService.rescheduleJob(jName, jGroup, cron);
+            quartzService.rescheduleJob(name + "_trigger", group, cron, desc);
             return "重启任务成功";
         } catch (SchedulerException e) {
             e.printStackTrace();
@@ -100,15 +100,15 @@ public class QuartzController {
     /**
      * 删除任务
      *
-     * @param jName  任务名称
-     * @param jGroup 任务组
+     * @param name  任务名称
+     * @param group 任务组
      * @return ResultMap
      */
     @PostMapping(path = "/deletejob")
     @ResponseBody
-    public String deletejob(String jName, String jGroup) {
+    public String deletejob(String name, String group) {
         try {
-            quartzService.deletejob(jName, jGroup);
+            quartzService.deletejob(name + "_job", group);
             return "删除任务成功";
         } catch (SchedulerException e) {
             e.printStackTrace();

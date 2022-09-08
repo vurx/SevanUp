@@ -10,6 +10,7 @@ public enum ReturnInfoEnum {
     URL_PARSE_ERROR(-9002, "url parse error."),
     TRANSFER_DATESTR_ERROR(-9003, "transfer dateStr error."),
     QY_WECHAT_MSGCRYPT_ERROR(-9004, "qy wechat msgcrypt error."),
+    UNABLE_FIND_EXTENDERS_ERROR(-9005, "can't find the extender."),
     UNKNOWN_ERROR(-9999, "unknow error."),
     ;
     private Integer code;

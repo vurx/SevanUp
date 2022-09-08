@@ -6,12 +6,13 @@ import com.vvvv.sevanUp.basic.constant.enums.ReturnInfoEnum;
 import com.vvvv.sevanUp.basic.exception.VurxException;
 import com.vvvv.sevanUp.mapper.quartz.JobDetailMapper;
 import com.vvvv.sevanUp.model.quartz.JobAndTriggerDto;
-import com.vvvv.sevanUp.quartz.RemindJob;
+import com.vvvv.sevanUp.instance.quartz.RemindJob;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -42,7 +43,7 @@ public class QuartzServiceImpl implements QuartzService {
      * @param cron   cron表达式
      */
     @Override
-    public void addjob(String jName, String jGroup, String tName, String tGroup, String description, String cron) {
+    public void addjob(String jName, String jGroup, String tName, String tGroup, String description, String cron, String user) {
         try {
             // 构建JobDetail
             JobDetail jobDetail = JobBuilder.newJob(RemindJob.class)
@@ -75,13 +76,13 @@ public class QuartzServiceImpl implements QuartzService {
     }
 
     @Override
-    public void rescheduleJob(String jName, String jGroup, String cron) throws SchedulerException {
+    public void rescheduleJob(String jName, String jGroup, String cron, String desc) throws SchedulerException {
         TriggerKey triggerKey = TriggerKey.triggerKey(jName, jGroup);
         // 表达式调度构建器
         CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
         CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
         // 按新的cronExpression表达式重新构建trigger
-        trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
+        trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withDescription(desc).withSchedule(scheduleBuilder).build();
         // 按新的trigger重新设置job执行，重启触发器
         scheduler.rescheduleJob(triggerKey, trigger);
     }
