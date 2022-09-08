@@ -40,15 +40,14 @@ public class ParkingJob implements Job {
         map.put("description", String.format(StringEnum.WECHAT_PARK_DESCRIPTION.getStr(), parkTimeInfo.get("parkStr"), parkTimeInfo.get("nowStr")));
         map.put("picurl", StringEnum.WECHAT_PARK_PIC.getStr());
         if (diff[0] == 60 || diff[0] == 90) {
-//            wechatContext.sendMsg(map);
+            wechatContext.sendMsg(map);
             log.info("{}并已发送通知。", title);
 
         } else if (diff[0] >= 109 && diff[0] <= 110) {
             title = String.format(StringEnum.WECHAT_PARK_TITLE_CHARGE.getStr(), diff[0], diff[1]);
             map.put("title", title);
-//            wechatContext.sendMsg(map);
+            wechatContext.sendMsg(map);
             log.info("{}并已发送通知。", title);
         }
-       log.info("{}", title);
     }
 }
