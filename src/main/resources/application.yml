@@ -1,0 +1,86 @@
+server:
+  port: 8887
+  servlet:
+    context-path: /SevanUp
+spring:
+  datasource:
+    url: jdbc:mysql://124.222.167.129:3310/ben?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 124.222.167.129
+    port: 6379
+    password: 940817
+    database: 0
+    # 连接超时时间（毫秒）
+    timeout: 1800000
+    lettuce:
+      pool:
+        # 连接池的最大连接数（使用负值表示没有限制）
+        max-active: 20
+        # 最大阻塞等待时间（负值表示没有限制）
+        max-wait: -1
+        # 连接池的最大空闲连接
+        max-idle: 5
+        # 连接池的最小空闲连接
+        min-idle: 0
+  kafka:
+    bootstrap-servers: 172.16.9.30:9092
+    producer:
+      retries: 0 #若设置大于0的值，客户端会将发送失败的记录重新发送
+      batch-size: 16384 #当将多个记录被发送到同一个分区时， Producer 将尝试将记录组合到更少的请求中。这有助于提升客户端和服务器端的性能。这个配置控制一个批次的默认大小（以字节为单位）。16384是缺省的配置
+      buffer-memory: 33554432 #Producer 用来缓冲等待被发送到服务器的记录的总字节数，33554432是缺省配置
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer #关键字的序列化类
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer #值的序列化类
+    listener:
+      ack-mode: manual_immediate
+      missing-topics-fatal: false
+
+
+# mybatis-plus-boot-starter 写法
+mybatis-plus:
+  #  #todo * ** 有什么区别
+  mapperLocations: classpath:mybatis/**/*Mapper.xml
+  typeAliasesPackage: com.vvvv.sevanUp.model.*
+
+#  mybatis-spring-boot-starter 写法
+#mybatis:
+#  mapper-locations: classpath:mybatis/excel/SubsinstSynTempMapper.xml
+#  type-aliases-package: com.vvvv.sevanUp.model.excel.*
+
+logging:
+  level:
+    com.vvvv.mapper: info
+
+#xss攻击拦截
+xss:
+  enabled: true
+  excludes:
+  urlPatterns: /*
+
+## 轻量级HTTP客户端框架forest
+forest:
+  # 配置底层API为 okhttp3
+  backend: okhttp3
+  # 连接池最大连接数，默认值为500
+  max-connections: 1000
+  # 每个路由的最大连接数，默认值为500
+  max-route-connections: 500
+  # 请求超时时间，单位为毫秒, 默认值为3000
+  timeout: 3000
+  # 连接超时时间，单位为毫秒, 默认值为2000
+  connect-timeout: 3000
+  # 请求失败后重试次数，默认为0次不重试
+  retry-count: 1
+  # 单向验证的HTTPS的默认SSL协议，默认为SSLv3
+  ssl-protocol: SSLv3
+  # 打开或关闭日志，默认为true
+  logEnabled: true
+  # 打开/关闭Forest请求日志（默认为 true）
+  log-request: true
+  # 打开/关闭Forest响应状态日志（默认为 true）
+  log-response-status: true
+  # 打开/关闭Forest响应内容日志（默认为 false）
+  log-response-content: true
