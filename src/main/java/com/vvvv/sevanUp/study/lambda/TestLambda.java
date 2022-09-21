@@ -191,4 +191,17 @@ public class TestLambda {
         return list.stream();
     }
 
+    @Test
+    public void test10(){
+        List<String> strList1 = Arrays.asList("aaa", "bbb", "ccc", "ddd", "eee");
+        List<String> strList2 = Arrays.asList("aaa", "bbbb", "cccc", "dddd", "eeee");
+//        Set<String> collect = Stream.of(strList1, strList2)
+//                .flatMap(Collection::stream)
+//                .collect(Collectors.toSet());
+//        System.out.println(collect);
+        strList1.addAll(strList2);
+        System.out.println(strList1);
+    }
+
+
 }

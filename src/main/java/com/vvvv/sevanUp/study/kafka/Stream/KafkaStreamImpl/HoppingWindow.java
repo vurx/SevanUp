@@ -1,6 +1,7 @@
-package com.vvvv.sevanUp.study.kafka.Stream;
+package com.vvvv.sevanUp.study.kafka.Stream.KafkaStreamImpl;
 
 import com.alibaba.fastjson.JSON;
+import com.vvvv.sevanUp.study.kafka.Stream.KafkaStream;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -12,23 +13,21 @@ import org.springframework.stereotype.Component;
 import java.time.Duration;
 
 /**
- * Stream - 翻滚时间窗口
+ * Stream - 跳跃时间窗口
  */
 @Component
 @Slf4j
-public class TumblingWindow extends KafkaStream {
+public class HoppingWindow extends KafkaStream {
+//    @CustomCut(value = 1, describe = "stream HoppingWindow")
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        log.info("Stream - TumblingWindow start ...");
-        startStream("TumblingWindow");
-        log.info("Stream - TumblingWindow end ...");
-
+//        startStream("HoppingWindow");
     }
 
     @Override
-    StreamsBuilder buildStream() {
+    protected StreamsBuilder buildStream() {
         StreamsBuilder builder = new StreamsBuilder();
-        KStream<String, String> source = builder.stream("topic-tumbling");
+        KStream<String, String> source = builder.stream("topic-hopping");
         source.map((k, v) -> {
                     String name = JSON.parseObject(v).getString("name");
                     return new KeyValue<>(name, v);
@@ -37,7 +36,7 @@ public class TumblingWindow extends KafkaStream {
                 .windowedBy(TimeWindows.of(Duration.ofSeconds(5L)))
                 .count()
                 .toStream()
-                .foreach((k, v) -> log.info("tumbling k={},v={}", getReadableWindowed(k), v));
+                .foreach((k, v) -> log.info("hopping k={},v={}", getReadableWindowed(k), v));
         return builder;
     }
 }

@@ -24,7 +24,7 @@ public abstract class KafkaStream implements ApplicationRunner {
     @Value("${spring.kafka.bootstrap-servers}")
     protected String kfkUrls;
 
-    Windowed<String> getReadableWindowed(Windowed<String> key) {
+    protected Windowed<String> getReadableWindowed(Windowed<String> key) {
         return new Windowed<String>(key.key(), key.window()) {
             @Override
             public String toString() {
@@ -34,10 +34,10 @@ public abstract class KafkaStream implements ApplicationRunner {
         };
     }
 
-    abstract StreamsBuilder buildStream();
+    protected abstract StreamsBuilder buildStream();
 
 
-    void startStream(String idConfig) {
+    protected void startStream(String idConfig) {
         Properties config = new Properties();
         config.put(StreamsConfig.APPLICATION_ID_CONFIG, "vvvv-" + idConfig);
         config.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, kfkUrls);

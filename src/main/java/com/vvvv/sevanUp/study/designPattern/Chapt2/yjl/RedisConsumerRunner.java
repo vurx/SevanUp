@@ -1,5 +1,6 @@
 package com.vvvv.sevanUp.study.designPattern.Chapt2.yjl;
 
+import com.vvvv.sevanUp.basic.aspect.annotationAspect.CustomCut;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 @Component
@@ -41,8 +40,10 @@ public class RedisConsumerRunner implements ApplicationRunner {
                         v -> v, (v1, v2) -> v1));
     }
 
+    @CustomCut(aspect = {"Around", "AfterThrowing"}, describe = "RedisConsumerRunner")
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
+        log.info("test,,,,,,,,,,,,");
         /*ExecutorService pool = Executors.newFixedThreadPool(2);
         for (int i = 0; i < keys.length; i++) {
             RedisConsumer redisConsumer = new RedisConsumer(keys[i]);
